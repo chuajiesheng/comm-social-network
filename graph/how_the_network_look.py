@@ -63,6 +63,7 @@ class Survey:
         for question_id, response in enumerate(self.attributes):
             dest = output_folder + os.sep + base_filename + '_Q' + str(question_id + 2) + '.json'
             print('# Output to: {}'.format(dest))
+            print('# Number of edges: {}'.format(len(response)))
             with open(dest, 'w') as out:
                 out.write('var links = ')
                 json.dump(response, out)
