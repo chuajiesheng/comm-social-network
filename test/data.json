@@ -1,0 +1,32 @@
+
+// http://blog.thomsonreuters.com/index.php/mobile-patent-suits-graphic-of-the-day/
+var links = [
+  {source: "Microsoft", target: "Amazon", type: "relationship", strength: 1},
+  {source: "Microsoft", target: "HTC", type: "relationship", strength: 1},
+  {source: "Samsung", target: "Apple", type: "relationship", strength: 5},
+  {source: "Motorola", target: "Apple", type: "relationship", strength: 1},
+  {source: "Nokia", target: "Apple", type: "relationship", strength: 1},
+  {source: "HTC", target: "Apple", type: "relationship", strength: 3},
+  {source: "Kodak", target: "Apple", type: "relationship", strength: 1},
+  {source: "Microsoft", target: "Barnes & Noble", type: "relationship", strength: 1},
+  {source: "Microsoft", target: "Foxconn", type: "relationship", strength: 1},
+  {source: "Oracle", target: "Google", type: "relationship", strength: 1},
+  {source: "Apple", target: "HTC", type: "relationship", strength: 4},
+  {source: "Microsoft", target: "Inventec", type: "relationship", strength: 1},
+  {source: "Samsung", target: "Kodak", type: "relationship", strength: 1},
+  {source: "LG", target: "Kodak", type: "relationship", strength: 1},
+  {source: "RIM", target: "Kodak", type: "relationship", strength: 2},
+  {source: "Sony", target: "LG", type: "relationship", strength: 1},
+  {source: "Kodak", target: "LG", type: "relationship", strength: 1},
+  {source: "Apple", target: "Nokia", type: "relationship", strength: 1},
+  {source: "Qualcomm", target: "Nokia", type: "relationship", strength: 1},
+  {source: "Apple", target: "Motorola", type: "relationship", strength: 1},
+  {source: "Microsoft", target: "Motorola", type: "relationship", strength: 1},
+  {source: "Motorola", target: "Microsoft", type: "relationship", strength: 1},
+  {source: "Huawei", target: "ZTE", type: "relationship", strength: 1},
+  {source: "Ericsson", target: "ZTE", type: "relationship", strength: 1},
+  {source: "Kodak", target: "Samsung", type: "relationship", strength: 1},
+  {source: "Apple", target: "Samsung", type: "relationship", strength: 1},
+  {source: "Kodak", target: "RIM", type: "relationship", strength: 1},
+  {source: "Nokia", target: "Qualcomm", type: "relationship", strength: 1}
+];
