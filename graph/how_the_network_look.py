@@ -128,6 +128,58 @@ def copy_base_html(base_filename, survey):
         f.close()
 
 
+def analyse(survey):
+    graphs = survey.graphs
+
+    for k in graphs.keys():
+        print('# Analysing Q{}'.format(int(k) + 1))
+        g = graphs[k]
+        degree(g)
+        closeness(g)
+        betweenness(g)
+        edge_betweenness(g)
+
+
+def edge_betweenness(g):
+    # Betweenness centrality of an edge e is the sum of the fraction of all-pairs shortest paths that pass through e
+    e = nx.edge_betweenness_centrality(g, normalized=False)
+    e_sorted = [(k, e[k]) for k in sorted(e, key=e.get, reverse=True)]
+    first = e_sorted[0]
+    last = e_sorted[len(e_sorted) - 1]
+    print('## Highest edge_betweenness_centrality: {} with {}'.format(first[0], first[1]))
+    print('## Lowest edge_betweenness_centrality: {} with {}'.format(last[0], last[1]))
+
+
+def betweenness(g):
+    # Betweenness centrality of a node v is the sum of the fraction of all-pairs shortest paths that pass through v
+    b = nx.betweenness_centrality(g, normalized=False)
+    b_sorted = [(k, b[k]) for k in sorted(b, key=b.get, reverse=True)]
+    first = b_sorted[0]
+    last = b_sorted[len(b_sorted) - 1]
+    print('## Highest betweenness_centrality: {} with {}'.format(first[0], first[1]))
+    print('## Lowest betweenness_centrality: {} with {}'.format(last[0], last[1]))
+
+
+def closeness(g):
+    # Closeness centrality [1] of a node u is the reciprocal of the sum of the shortest path distances from u to all n-1 other nodes.
+    c = nx.closeness_centrality(g, normalized=False)
+    c_sorted = [(k, c[k]) for k in sorted(c, key=c.get, reverse=True)]
+    first = c_sorted[0]
+    last = c_sorted[len(c_sorted) - 1]
+    print('## Highest closeness_centrality: {} with {}'.format(first[0], first[1]))
+    print('## Lowest closeness_centrality: {} with {}'.format(last[0], last[1]))
+
+
+def degree(g):
+    # The degree centrality for a node v is the fraction of nodes it is connected to
+    d = nx.degree_centrality(g)
+    d_sorted = [(k, d[k]) for k in sorted(d, key=d.get, reverse=True)]
+    first = d_sorted[0]
+    last = d_sorted[len(d_sorted) - 1]
+    print('## Highest degree_centrality: {} with {}'.format(first[0], first[1]))
+    print('## Lowest degree_centrality: {} with {}'.format(last[0], last[1]))
+
+
 def main():
     data_files = find_all_csv(folder)
     for f in data_files:
@@ -136,6 +188,7 @@ def main():
         filename = f[len(folder + os.sep):-len('.csv')]
         output_json(filename, survey)
         copy_base_html(filename, survey)
+        analyse(survey)
 
 
 if __name__ == '__main__':
