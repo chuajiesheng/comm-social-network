@@ -4,6 +4,8 @@ import os
 import csv
 import json
 import copy
+import code
+import networkx as nx
 
 folder = 'input'
 output_folder = 'output'
@@ -20,6 +22,8 @@ class Survey:
     goto_in_trouble = []
     trust = []
     attributes = [conversed_with, met_facetoface, knowledge_source, personal_advice, hangout, goto_in_trouble, trust]
+
+    graphs = dict()
 
     def __init__(self):
         pass
@@ -55,9 +59,16 @@ class Survey:
     def add_response(self, question, source, destination, strength):
         # question - 1 due to indexing
         # format: {source: "Microsoft", target: "Amazon", type: "relationship", strength: 1}
-        record = {"source": "student_{}".format(source), "target": "student_{}".format(destination),
+        s = "student_{}".format(source)
+        d = "student_{}".format(destination)
+        record = {"source": s, "target": d,
                   "type": "relationship", "strength": strength}
         self.attributes[question - 1].append(record)
+
+        if question not in self.graphs.keys():
+            self.graphs[question] = nx.DiGraph()
+
+        self.graphs[question].add_edge(s, d, weight=strength)
 
     def to_json(self, base_filename):
         for question_id, response in enumerate(self.attributes):
