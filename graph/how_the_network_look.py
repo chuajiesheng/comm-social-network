@@ -138,6 +138,7 @@ def analyse(survey):
         closeness(g)
         betweenness(g)
         edge_betweenness(g)
+        # code.interact(local=dict(globals(), **locals()))
 
 
 def edge_betweenness(g):
