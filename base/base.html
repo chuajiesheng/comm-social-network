@@ -14,7 +14,7 @@
     }
 
     text {
-        font: 10px sans-serif;
+        font: 20px sans-serif;
         pointer-events: none;
         text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
     }
@@ -42,7 +42,7 @@
     };
 
     var strength_width = function (d) {
-        return (0.7 + 0.35 * d.strength) + "px";
+        return (2 + 0.35 * d.strength) + "px";
     };
 
     var nodes = {};
@@ -53,15 +53,15 @@
         link.target = nodes[link.target] || (nodes[link.target] = {name: link.target});
     });
 
-    var width = screen.width,
-            height = screen.height;
+    var width = screen.width * 2,
+            height = screen.height * 2;
 
     var force = d3.layout.force()
             .nodes(d3.values(nodes))
             .links(links)
             .size([width, height])
             .linkDistance(200)
-            .charge(-300)
+            .charge(-2000)
             .on("tick", tick)
             .start();
 
@@ -100,7 +100,7 @@
     var circle = svg.append("g").selectAll("circle")
             .data(force.nodes())
             .enter().append("circle")
-            .attr("r", 6)
+            .attr("r", 12)
             .call(force.drag);
 
     var text = svg.append("g").selectAll("text")
