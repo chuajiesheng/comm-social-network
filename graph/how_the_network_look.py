@@ -138,7 +138,14 @@ def analyse(survey):
         closeness(g)
         betweenness(g)
         edge_betweenness(g)
+        number_weakly_connected_components(g)
         # code.interact(local=dict(globals(), **locals()))
+
+
+def number_weakly_connected_components(g):
+    # Return the number of connected components in G. For directed graphs only.
+    n = nx.number_weakly_connected_components(g)
+    print('## Number_weakly_connected_components: {}'.format(n))
 
 
 def edge_betweenness(g):
