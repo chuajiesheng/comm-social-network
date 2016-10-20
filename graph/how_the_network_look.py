@@ -139,7 +139,13 @@ def analyse(survey):
         betweenness(g)
         edge_betweenness(g)
         number_weakly_connected_components(g)
+        density(g)
         # code.interact(local=dict(globals(), **locals()))
+
+
+def density(g):
+    d = nx.density(g)
+    print('## Density: {}'.format(d))
 
 
 def number_weakly_connected_components(g):
