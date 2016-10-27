@@ -4,6 +4,7 @@ import os
 import csv
 import json
 import copy
+import random
 import code
 import networkx as nx
 
@@ -23,10 +24,23 @@ class Survey:
     trust = []
     attributes = [conversed_with, met_facetoface, knowledge_source, personal_advice, hangout, goto_in_trouble, trust]
 
+    student_mapping = dict()
     graphs = dict()
 
     def __init__(self):
         pass
+
+    def to_rand(self, id):
+        student_id = int(id)
+
+        if student_id in self.student_mapping.keys():
+            return self.student_mapping[student_id]
+
+        new_id = random.randint(student_id * 50, (student_id * 500) - 1)
+        self.student_mapping[student_id] = new_id
+        print('# From {} to {}'.format(id, new_id))
+
+        return self.student_mapping[student_id]
 
     def parse_row(self, row):
         source_id = row['Q1']
@@ -52,9 +66,8 @@ class Survey:
                 question_id = 8
 
             destination_id = int(key_parts[1])
-            print('## Adding response: from {}, to {}, for {}, with {}'.format(source_id, destination_id, question_id, row[k]))
             # question_id - 1 because Q1 is used to denote the person answering the question
-            self.add_response(question_id - 1, source_id, destination_id, int(row[k]))
+            self.add_response(question_id - 1, self.to_rand(source_id), self.to_rand(destination_id), int(row[k]))
 
     def add_response(self, question, source, destination, strength):
         # question - 1 due to indexing
